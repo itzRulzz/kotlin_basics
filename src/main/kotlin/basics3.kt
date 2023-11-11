@@ -4,24 +4,23 @@
 */
 package main.kotlin
 
-fun number_input(num: Int): Int{
-    var newnum = num
-
+fun number_input(): Int{
     try{
-        newnum = readln().toInt()
+        val num = readln().toInt()
+        if (num <= 0){
+            println("Число должно быть больше нуля!")
+            return number_input()
+        }
+        return num
     } catch(e: NumberFormatException) {
         println("Введите ЧИСЛО.")
-        number_input(newnum)
+        return number_input()
     }
-
-    return newnum
 }
 
 fun main(){
-    var num: Int = 100
-
     println("Введите натуральное число для преобразования в двоичную систему: ")
-    num = number_input(num)
+    var num = number_input()
 
-    println(num)
+    println("$num в десятичной = ${Integer.toBinaryString(num)} в двоичной")
 }
