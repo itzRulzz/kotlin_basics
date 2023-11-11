@@ -7,19 +7,28 @@
 */
 
 fun main() {
-    println("Введите строку: ")
-    val text = readln()
+    println("Введите строку для подсчета количества симоволов в нем: ")
+    var text: String
+
+    while(true){
+        text = readln()
+        if (text == "")
+            println("Строка не должна быть пустой.")
+        else
+            break
+    }
 
     var text2 = ""
     var count = 0
 
     for (i in text.indices) {
         val c = text[i]
-        count++
+        if (c != ' ')
+            count++
 
         if ((i == maxOf(text.length) - 1) || (text[i + 1] != c)) {
             text2 += c
-            if (count != 1)
+            if (count != 1 && count != 0)
                 text2 += count
             count = 0
         }
