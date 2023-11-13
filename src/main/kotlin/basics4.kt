@@ -3,31 +3,6 @@
 Символами операции могут быть: / — деление, * — умножение, + — сложение, - — вычитание. Числа могут быть вещественными.
 Числа и знак операции разделяются между собой одним пробелом. Ввод производится в формате - ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ.
 */
-// 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
-
-/*
-fun main() {
-   while (true) {
-       println("Enter your equation:")
-       val equation = readLine()!!
-       val (num1, num2, operation) = string_splitting(equation)
-
-       when (operation) {
-           "+" -> return num1 + num2
-           "-" -> return num1 - num2
-           "*" -> return num1 * num2
-           "/" -> if (num1 / num2 == Double.POSITIVE_INFINITY) {
-               println("На ноль делить нельзя!")
-           } else {
-               return num1 / num2
-           }
-           else -> {
-               println("Вы ввели неверную операцию!")
-           }
-       }
-   }
-}
-*/
 
 package main.kotlin
 
@@ -46,6 +21,15 @@ fun string_input(): String {
         println("Вместо , в десятичной дробе должна быть .")
         return string_input()
     }
+    val (num1, num2, operation) = string_splitting(equation)
+    if (num2 == 0.0 && operation == "/"){
+        println("На ноль делить нельзя!")
+        return string_input()
+    }
+    if (operation != "+" && operation != "-" && operation != "/" && operation != "*"){
+        println("Введите корректную операцию.")
+        return string_input()
+    }
 
     return equation
 }
@@ -57,12 +41,9 @@ fun equation_calculation(equation: String): Double{
         "+" -> return num1 + num2
         "-" -> return num1 - num2
         "*" -> return num1 * num2
-        "/" -> if (num1 / num2 == Double.POSITIVE_INFINITY)
-            println("На ноль делить нельзя!")
-        else
-            return num1 / num2
+        "/" -> return num1 / num2
         else -> {
-            println("Вы ввели неверную операцию!")
+            println("Непредвиденная ошибка. Перезагрузите порграмму.")
         }
     }
 
