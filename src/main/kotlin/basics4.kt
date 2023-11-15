@@ -37,17 +37,16 @@ fun string_input(): String {
 fun equation_calculation(equation: String): Double{
     val (num1, num2, operation) = string_splitting(equation)
 
-    when (operation) {
-        "+" -> return num1 + num2
-        "-" -> return num1 - num2
-        "*" -> return num1 * num2
-        "/" -> return num1 / num2
+    return when (operation) {
+        "+" -> num1 + num2
+        "-" -> num1 - num2
+        "*" -> num1 * num2
+        "/" -> num1 / num2
         else -> {
             println("Непредвиденная ошибка. Перезагрузите порграмму.")
+            equation_calculation(string_input())
         }
     }
-
-    return 0.0
 }
 
 fun string_splitting(equation: String): Triple<Double, Double, String> {
